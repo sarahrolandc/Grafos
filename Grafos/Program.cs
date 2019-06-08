@@ -12,9 +12,16 @@ namespace Grafos
         {
             Areas.dissimilarityMatrix = FileRead.searchAreas(@"..\..\txts\Matriz.txt");
             Graph g1 = FileRead.studentsGraph(@"..\..\txts\Alunos.txt");
+            int groups;
 
-            Console.WriteLine("Digite o numero de grupos:");
-            int groups = int.Parse(Console.ReadLine());
+            Console.WriteLine("Digite o numero de professores:");
+            groups = int.Parse(Console.ReadLine());
+
+            if (groups < 1)
+            {
+                Console.WriteLine("O número de professores deve ser pelo menos 1!");
+                groups = 1;
+            }
 
             Graph g2 = g1.getAGMKruskal(groups);
             g2.printGroups(groups);

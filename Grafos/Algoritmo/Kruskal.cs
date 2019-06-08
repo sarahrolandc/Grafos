@@ -8,21 +8,21 @@ namespace Grafos
 {
     public static class Kruskal
     {
-        private static Graph tree;
+        private static Graph forest;
         private static Vertex sourceV;
         private static Graph graph;
         public static Graph execute(Graph sourceGraph, int groups)
         {
-            tree = new Graph(sourceGraph.GraphWithoutEdges());
+            forest = new Graph(sourceGraph.GraphWithoutEdges());
             graph = sourceGraph;
 
             Edge edge = FindLowestEdge();
             int addedEdges = 0;
 
-            while (edge != null && addedEdges != (sourceGraph.VertexNumber() - groups))
+            while (edge != null && addedEdges < (sourceGraph.VertexNumber() - groups))
             {
-                //adiciona a aresta a arvore
-                tree.addEdge(sourceV.id, edge.vertex.id, edge.weight);
+                //adiciona a aresta na floresta
+                forest.addEdge(sourceV.id, edge.vertex.id, edge.weight);
 
                 //seleciona a aresta de menor peso
                 edge = FindLowestEdge();
@@ -30,7 +30,7 @@ namespace Grafos
                 addedEdges++;
             }
 
-            return tree;
+            return forest;
         }
 
         // Busca a aresta de menor peso
@@ -56,14 +56,17 @@ namespace Grafos
 
                 }
             }
+            if (LowEdge != null)
+            {
+                graph.setVisitedEdge(sourceV.id, LowEdge.vertex.id);
+            }
 
-            graph.setVisitedEdge(sourceV.id, LowEdge.vertex.id);
             return LowEdge;
         }
 
         private static bool HasCicle(Vertex sourceVertex, Edge edge)
         {
-            tree.clearColors();
+            forest.clearColors();
 
             return VerifyEdge(sourceVertex, edge);
         }
@@ -74,7 +77,7 @@ namespace Grafos
         // ligação com o vértice da aresta. Se tiver possui ciclo.
         private static bool VerifyEdge(Vertex sourceVertex, Edge edge)
         {
-            tree.vertexes[sourceVertex.id - 1].color = "GREEN";
+            forest.vertexes[sourceVertex.id - 1].color = "GREEN";
 
             if (edge.vertex.id == sourceVertex.id)
             {
@@ -82,7 +85,7 @@ namespace Grafos
             }
             else
             {
-                foreach (Edge a in tree.vertexes[sourceVertex.id - 1].adjacents)
+                foreach (Edge a in forest.vertexes[sourceVertex.id - 1].adjacents)
                 {
                     if (a.vertex.color == "WHITE")
                     {
