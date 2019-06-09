@@ -35,8 +35,9 @@ namespace Grafos
                         vertexes[i].AddAdjacentVertex(vertexes[j], sim);
                     }
                 }
-
+                vertexes[i].adjacents.Sort();
             }
+            
         }
 
         private int getDissimilarity(int a1, int a2)

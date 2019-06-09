@@ -29,7 +29,6 @@ namespace Grafos
 
                 addedEdges++;
             }
-
             return forest;
         }
 
@@ -50,6 +49,7 @@ namespace Grafos
                             LowWeight = edge.weight;
                             LowEdge = edge;
                             sourceV = vertex;
+                            break;
                         }
                         else { graph.setBackEdge(vertex.id, edge.vertex.id); }
                     }

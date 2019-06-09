@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Grafos
 {
-    public class Edge
+    public class Edge : IComparable
     {
         public Vertex vertex { get; set; }
         public int weight { get; set; }
@@ -20,5 +20,25 @@ namespace Grafos
             this.visited = false;
             this.back = false;
         }
+
+        public int CompareTo(Object obj)
+        {
+            Edge edge = (Edge)obj;
+
+            if (edge.weight > this.weight)
+            {
+                return -1;
+            }
+            else if (edge.weight < this.weight)
+            {
+                return 1;
+            }
+            else
+            {
+                return 0;
+            }
+        }
+
+
     }
 }
