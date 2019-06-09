@@ -156,15 +156,16 @@ namespace Grafos
 
             for (int groupId = 1; groupId <= numberOfGroups; groupId++)
             {
-                Console.WriteLine("Grupo " + groupId);
+                Console.WriteLine("Grupo " + groupId + ":");
 
                 foreach (Vertex v in vertexes)
                 {
                     if (v.student.groupId == groupId)
                     {
-                        Console.WriteLine(v.student.code);
+                        Console.Write(v.student.code + " ");
                     }
                 }
+                Console.WriteLine();
             }
 
         }
