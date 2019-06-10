@@ -10,8 +10,8 @@ namespace Grafos
     {
         static void Main(string[] args)
         {
-            Areas.dissimilarityMatrix = FileRead.searchAreas(@"..\..\txts\Matriz.txt");
-            Graph g1 = FileRead.studentsGraph(@"..\..\txts\Alunos.txt");
+            Areas.dissimilarityMatrix = FileRead.searchAreas(@"..\..\txts\Matriz11.txt");
+            Graph g1 = FileRead.studentsGraph(@"..\..\txts\Alunos11.txt");
             int groups;
 
             Console.WriteLine("Digite o numero de professores:");

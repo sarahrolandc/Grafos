@@ -53,9 +53,13 @@ namespace Grafos
                         }
                         else { graph.setBackEdge(vertex.id, edge.vertex.id); }
                     }
-
+                    else if (edge.weight > LowWeight)
+                    {
+                        break;
+                    }
                 }
             }
+
             if (LowEdge != null)
             {
                 graph.setVisitedEdge(sourceV.id, LowEdge.vertex.id);
